@@ -1,1 +1,1 @@
-# rock-paper-scissors
+JavaScript program to play rock paper scissors on console.
