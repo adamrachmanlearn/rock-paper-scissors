@@ -43,3 +43,41 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 }
+
+// this function lets you to play the game five times
+function playGame(){
+    //initiate point
+    let userPoint = 0;
+    let compPoint = 0;
+
+    for (let i = 0; i < 5; i++) {
+        //get user choice
+        let userSelection = prompt("Choose rock, paper, or scissors!");
+
+        // invoke playRound to determine result
+        let result = playRound(userSelection, getComputerChoice());
+
+        // output result
+        console.log(result);
+
+        // adding point to winner
+        if (result[4] === "W") {
+            userPoint++;
+        } else if (result[4] === "L"){
+            compPoint++;
+        } else {
+            continue;
+        }
+    }
+
+    // output winner after five games
+    if (userPoint > compPoint) {
+        console.log("You've Won! " + (userPoint/5)*100 + "% winrate!");
+    } else if (userPoint < compPoint) {
+        console.log("You've Lose! Better luck next time!");
+    } else {
+        console.log("Draw! Unbelievable!");
+    }
+}
+
+playGame();
