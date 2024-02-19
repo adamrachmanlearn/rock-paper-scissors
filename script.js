@@ -91,24 +91,39 @@ const buttons = document.querySelectorAll("button");
 let userScore = 0;
 let compScore = 0;
 
+const result = document.querySelector(".result");
+const resultText = document.createElement("p");
+const winner = document.createElement("p");
+result.appendChild(resultText);
+
+
 buttons.forEach((button) => {
     button.addEventListener("click", (elem) => {
         const userChoice = elem.target.textContent.toLowerCase();
-        const result = playRound(userChoice, compChoice());
-        let scoreText = "";
-        switch(result) {
+        const gameResult = playRound(userChoice, compChoice());
+        switch(gameResult) {
             case "draw":
-                scoreText = "Draw! You: " + userScore + " - " + compScore + " : Computer.";
+                resultText.textContent = "Draw! You: " + userScore + " - " + compScore + " : Computer.";
                 break;
             case "win":
                 userScore += 1;
-                scoreText = "You\'ve Won! You: " + userScore + " - " + compScore + " : Computer.";
+                resultText.textContent = "You\'ve Won! You: " + userScore + " - " + compScore + " : Computer.";
                 break;
             case "lose":
                 compScore += 1;
-                scoreText = "You\'ve Lose! You: " + userScore + " - " + compScore + " : Computer.";
+                resultText.textContent = "You\'ve Lose! You: " + userScore + " - " + compScore + " : Computer.";
         }
-        console.log(scoreText);
+        if (userScore === 5) {
+            winner.textContent = "You've Won!";
+            result.appendChild(winner);
+            userScore = 0;
+            compScore = 0;
+        } else if (compScore === 5) {
+            winner.textContent = "You've Lose.";
+            result.appendChild(winner);
+            userScore = 0;
+            compScore = 0;
+        }
     });
 });
 
