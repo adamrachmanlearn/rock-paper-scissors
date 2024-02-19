@@ -1,3 +1,4 @@
+/*
 // this function will generate random computer choice
 function getComputerChoice() {
     // get a random number
@@ -16,7 +17,7 @@ function getComputerChoice() {
 // this function will compare player and computer's choice
 function playRound(playerSelection, computerSelection) {
     // make input case insensitive
-    let player = playerSelection.toLowerCase();
+    let player = playerSelection;
 
     let comp = computerSelection;
 
@@ -80,4 +81,71 @@ function playGame(){
     }
 }
 
-playGame();
+const btn = document.querySelectorAll("button");
+btn.forEach((item) => {
+    item.addEventListener("click", playRound(item.className, getComputerChoice))
+});
+*/
+
+const buttons = document.querySelectorAll("button");
+let userScore = 0;
+let compScore = 0;
+
+buttons.forEach((button) => {
+    button.addEventListener("click", (elem) => {
+        const userChoice = elem.target.textContent.toLowerCase();
+        const result = playRound(userChoice, compChoice());
+        let scoreText = "";
+        switch(result) {
+            case "draw":
+                scoreText = "Draw! You: " + userScore + " - " + compScore + " : Computer.";
+                break;
+            case "win":
+                userScore += 1;
+                scoreText = "You\'ve Won! You: " + userScore + " - " + compScore + " : Computer.";
+                break;
+            case "lose":
+                compScore += 1;
+                scoreText = "You\'ve Lose! You: " + userScore + " - " + compScore + " : Computer.";
+        }
+        console.log(scoreText);
+    });
+});
+
+function compChoice() {
+    let num = Math.floor(Math.random() * 100);
+    if (num <= 33) {
+        return "rock";
+    } else if (num > 33 && num <= 66) {
+        return "paper";
+    } else {
+        return "scissors";
+    }
+};
+
+function playRound(userChoice, compChoice) {
+    const player = userChoice;
+    const comp = compChoice;
+
+    if (player === comp) {
+        return "draw";
+    } else if (player === "rock") {
+        if (comp === "paper") {
+            return "lose"
+        } else {
+            return "win"
+        }
+    } else if (player === "paper") {
+        if (comp === "scissors") {
+            return "lose"
+        } else {
+            return "win"
+        }
+    } else if (player === "scissors") {
+        if (comp === "rock") {
+            return "lose"
+        } else {
+            return "win"
+        }
+    }
+}
