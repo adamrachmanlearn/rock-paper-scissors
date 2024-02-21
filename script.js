@@ -7,7 +7,6 @@ const resultText = document.createElement("p");
 const winner = document.createElement("p");
 result.appendChild(resultText);
 
-
 buttons.forEach((button) => {
     button.addEventListener("click", (elem) => {
         const userChoice = elem.target.textContent.toLowerCase();
