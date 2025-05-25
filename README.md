@@ -1,4 +1,6 @@
-JavaScript program to play rock paper scissors.
-1. Click rock/paper/scissors button
-2. Compare it with random computer choice
-3. Play until either one got 5 pts
+# Rock paper scissors
+Simple rock paper scissors program to practice javascript
+## How it works
+1. Check user choice
+2. Compare it to randomly generated cpu choice
+3. First to get 5 points win
